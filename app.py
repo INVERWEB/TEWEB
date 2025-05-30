@@ -15,19 +15,26 @@ PARTIDAS_PERMITIDAS = [
     "ebitda", "ebitdaRatio", "epsdiluted", "weightedAverageShsOutDil"
 ]
 
+
 @app.route("/api/income/<ticker>")
 def get_income_statement(ticker):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     try:
         cursor.execute("""
-            SELECT * FROM income_statement_plana
-            WHERE ticker = ?
-            ORDER BY anio ASC
-        """, (ticker.upper(),))
+                       SELECT *
+                       FROM income_statement_plana
+                       WHERE UPPER(ticker) = UPPER(?)
+                       ORDER BY anio ASC
+                       """, (ticker,))
+
+        filas = cursor.fetchall()
+        print(f"🔍 Filas encontradas para {ticker.upper()}: {len(filas)}")  # ← puedes eliminarlo después
+
         columnas = [desc[0] for desc in cursor.description]
         resultados = []
-        for fila in cursor.fetchall():
+
+        for fila in filas:
             fila_dict = dict(zip(columnas, fila))
             filtrado = {}
             for k in PARTIDAS_PERMITIDAS:
@@ -42,9 +49,11 @@ def get_income_statement(ticker):
                         pass
                 filtrado[k] = val
             resultados.append(filtrado)
+
         return jsonify(resultados)
     except Exception as e:
         return jsonify({"error": str(e)})
     finally:
         conn.close()
-
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
