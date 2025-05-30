@@ -1,7 +1,21 @@
 from flask import Flask, jsonify
 import sqlite3
 from pathlib import Path
+from zipfile import ZipFile
 
+# === DESCOMPRESIÓN MODULAR ===
+def descomprimir_db_si_necesario(zip_name="fmp_datafree.db.zip", db_name="fmp_datafree.db"):
+    zip_path = Path(zip_name)
+    db_path = Path(db_name)
+    if zip_path.exists() and not db_path.exists():
+        with ZipFile(zip_path, 'r') as zip_ref:
+            zip_ref.extractall()
+            print("✅ Base de datos descomprimida")
+
+# Ejecutar descompresión al inicio
+descomprimir_db_si_necesario()
+
+# === CONFIGURACIÓN FLASK ===
 app = Flask(__name__)
 DB_PATH = Path("fmp_datafree.db")
 
@@ -15,22 +29,20 @@ PARTIDAS_PERMITIDAS = [
     "ebitda", "ebitdaRatio", "epsdiluted", "weightedAverageShsOutDil"
 ]
 
-
+# === ENDPOINT PRINCIPAL ===
 @app.route("/api/income/<ticker>")
 def get_income_statement(ticker):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     try:
         cursor.execute("""
-                       SELECT *
-                       FROM income_statement_plana
-                       WHERE UPPER(ticker) = UPPER(?)
-                       ORDER BY anio ASC
-                       """, (ticker,))
+            SELECT *
+            FROM income_statement_plana
+            WHERE UPPER(ticker) = UPPER(?)
+            ORDER BY anio ASC
+        """, (ticker,))
 
         filas = cursor.fetchall()
-        print(f"🔍 Filas encontradas para {ticker.upper()}: {len(filas)}")  # ← puedes eliminarlo después
-
         columnas = [desc[0] for desc in cursor.description]
         resultados = []
 
@@ -55,5 +67,7 @@ def get_income_statement(ticker):
         return jsonify({"error": str(e)})
     finally:
         conn.close()
+
+# === EJECUCIÓN DEL SERVIDOR ===
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=False)
