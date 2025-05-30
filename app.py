@@ -1,4 +1,3 @@
-
 from flask import Flask, jsonify
 import sqlite3
 from pathlib import Path
@@ -33,9 +32,15 @@ def get_income_statement(ticker):
             filtrado = {}
             for k in PARTIDAS_PERMITIDAS:
                 val = fila_dict.get(k)
-                if isinstance(val, (int, float)) and k != "anio":
-                    val = round(val / 1_000_000, 2)  # convertir a millones
-                filtrado[k] = val if val not in [None, "None", "null"] else ""
+                if val in [None, "None", "null"]:
+                    val = ""
+                else:
+                    try:
+                        num = float(val)
+                        val = round(num / 1_000_000, 2) if k != "anio" else val
+                    except:
+                        pass
+                filtrado[k] = val
             resultados.append(filtrado)
         return jsonify(resultados)
     except Exception as e:
