@@ -1,49 +1,67 @@
 #Ejecutatodo elflujo, verifica si el ticker ya fue consultado
 # , guarda archivos JSON
 
-from utils.fetch_tickers import get_tickers_by_sector_and_industry
+from pathlib import Path
 from utils.fetch_statements import get_all_statements
+from utils.fetch_tickers import get_tickers_by_sector
+from utils.fetch_profile import obtener_datos_perfil
 from utils.db_utils import (
-    crear_tablas,
-    registrar_ticker,
-    insertar_json_generico
+    insertar_json_generico,
+    registrar_ticker_consultado,
+    crear_tablas_si_faltan,
+    ya_existe_ticker
 )
 
-# Configuración del flujo
+# === CONFIGURACIÓN ===
 SECTOR = "Technology"
-INDUSTRY = "Semiconductors"
-LIMITE_TICKERS = 100  # Reducido por API gratuita
+MAX_TICKERS = 200
+LOG_PATH = Path("E:/@VALUECONOMICS/datos analisis/extraccion_testFMPremium/log_descarga.txt")
 
+# === FUNCIONES DE LOG ===
+def log_resultado(texto):
+    with open(LOG_PATH, "a", encoding="utf-8") as f:
+        f.write(texto + "\n")
+    print(texto)
+
+# === FLUJO PRINCIPAL ===
 def main():
-    crear_tablas()
-    tickers = get_tickers_by_sector_and_industry(SECTOR, INDUSTRY, LIMITE_TICKERS)
+    crear_tablas_si_faltan()
 
-    print(f"🔍 Tickers encontrados: {len(tickers)}")
-    for i, ticker in enumerate(tickers):
-        print(f"\n▶️ ({i+1}/{len(tickers)}) Procesando: {ticker}")
-        datos = get_all_statements(ticker)
+    tickers_api = get_tickers_by_sector(SECTOR, limit=10000)
+    tickers_a_procesar = [t for t in tickers_api if not ya_existe_ticker(t)][:MAX_TICKERS]
 
-        if datos:
-            registrar_ticker(
-                ticker,
-                datos.get("companyName", ticker),
-                SECTOR,
-                INDUSTRY
-            )
+    if not tickers_a_procesar:
+        log_resultado("⚠️ No hay nuevos tickers para procesar.")
+        return
 
-            for tipo, json_list in datos.items():
-                # ✅ Redirigir "ratios" a la tabla "ratios_raw"
-                tabla_destino = "ratios_raw" if tipo == "ratios" else tipo
+    for i, ticker in enumerate(tickers_a_procesar, start=1):
+        log_resultado(f"\n▶️ ({i}) Procesando: {ticker}")
 
-                if isinstance(json_list, list):
-                    for entry in json_list:
-                        insertar_json_generico(tabla_destino, ticker, entry)
-                elif isinstance(json_list, dict):
-                    insertar_json_generico(tabla_destino, ticker, json_list)
+        perfil = obtener_datos_perfil(ticker)
+        if not perfil:
+            log_resultado(f"❌ No se pudo obtener perfil para {ticker}")
+            continue
 
+        registrar_ticker_consultado(
+            ticker=perfil["ticker"],
+            nombre_empresa=perfil["nombre_empresa"],
+            sector=perfil["sector"],
+            industria=perfil["industria"],
+            market_cap=perfil["market_cap"],
+            enterprise_value=perfil["enterprise_value"]
+        )
 
-# redirigimos la tabla para evitar error
+        resultados = get_all_statements(ticker)
+        if not resultados:
+            log_resultado(f"❌ No se obtuvo data financiera para {ticker}")
+            continue
 
+        for tipo, contenido in resultados.items():
+            if isinstance(content := contenido, list):
+                for entry in content:
+                    insertar_json_generico(tipo, ticker, entry)
+            else:
+                insertar_json_generico(tipo, ticker, content)
 
 if __name__ == "__main__":
     main()
