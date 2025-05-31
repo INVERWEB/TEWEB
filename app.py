@@ -92,6 +92,40 @@ def balance(ticker):
 def cashflow(ticker):
     return jsonify(obtener_partidas(ticker, "cashflow_statement_plana", PARTIDAS_PERMITIDAS_CASHFLOW))
 
+@app.route("/api/ratios/<ticker>")
+def get_ratios(ticker):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    try:
+        cursor.execute("""
+            SELECT *
+            FROM ratios_plana
+            WHERE UPPER(ticker) = UPPER(?)
+            ORDER BY anio ASC
+        """, (ticker,))
+
+        filas = cursor.fetchall()
+        columnas = [desc[0] for desc in cursor.description]
+        resultados = []
+
+        for fila in filas:
+            fila_dict = dict(zip(columnas, fila))
+            for k, v in fila_dict.items():
+                if v in [None, "None", "null"]:
+                    fila_dict[k] = ""
+                else:
+                    try:
+                        num = float(v)
+                        fila_dict[k] = round(num, 4) if k != "anio" else v
+                    except:
+                        pass
+            resultados.append(fila_dict)
+
+        return jsonify(resultados)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    finally:
+        conn.close()
 
 # === EJECUCIÓN DEL SERVIDOR ===
 if __name__ == "__main__":
