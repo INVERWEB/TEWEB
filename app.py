@@ -85,12 +85,76 @@ def income(ticker):
     return jsonify(obtener_partidas(ticker, "income_statement_plana", PARTIDAS_PERMITIDAS_INCOME))
 
 @app.route("/api/balance/<ticker>")
-def balance(ticker):
-    return jsonify(obtener_partidas(ticker, "balance_sheet_plana", PARTIDAS_PERMITIDAS_BALANCE))
+def get_balance_sheet(ticker):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    try:
+        cursor.execute("""
+            SELECT *
+            FROM balance_sheet_plana
+            WHERE UPPER(ticker) = UPPER(?)
+            ORDER BY anio ASC
+        """, (ticker,))
+
+        filas = cursor.fetchall()
+        columnas = [desc[0] for desc in cursor.description]
+        resultados = []
+
+        for fila in filas:
+            fila_dict = dict(zip(columnas, fila))
+            for k, v in fila_dict.items():
+                if v in [None, "None", "null"]:
+                    fila_dict[k] = ""
+                else:
+                    try:
+                        num = float(v)
+                        fila_dict[k] = round(num / 1_000_000, 2) if k != "anio" else v
+                    except:
+                        pass
+            resultados.append(fila_dict)
+
+        return jsonify(resultados)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    finally:
+        conn.close()
+
 
 @app.route("/api/cashflow/<ticker>")
-def cashflow(ticker):
-    return jsonify(obtener_partidas(ticker, "cashflow_statement_plana", PARTIDAS_PERMITIDAS_CASHFLOW))
+def get_cash_flow(ticker):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    try:
+        cursor.execute("""
+            SELECT *
+            FROM cash_flow_plana
+            WHERE UPPER(ticker) = UPPER(?)
+            ORDER BY anio ASC
+        """, (ticker,))
+
+        filas = cursor.fetchall()
+        columnas = [desc[0] for desc in cursor.description]
+        resultados = []
+
+        for fila in filas:
+            fila_dict = dict(zip(columnas, fila))
+            for k, v in fila_dict.items():
+                if v in [None, "None", "null"]:
+                    fila_dict[k] = ""
+                else:
+                    try:
+                        num = float(v)
+                        fila_dict[k] = round(num / 1_000_000, 2) if k != "anio" else v
+                    except:
+                        pass
+            resultados.append(fila_dict)
+
+        return jsonify(resultados)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    finally:
+        conn.close()
+
 
 @app.route("/api/ratios/<ticker>")
 def get_ratios(ticker):
@@ -110,6 +174,7 @@ def get_ratios(ticker):
 
         for fila in filas:
             fila_dict = dict(zip(columnas, fila))
+            # Limpieza opcional
             for k, v in fila_dict.items():
                 if v in [None, "None", "null"]:
                     fila_dict[k] = ""
@@ -130,4 +195,5 @@ def get_ratios(ticker):
 # === EJECUCIÓN DEL SERVIDOR ===
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
+
 
