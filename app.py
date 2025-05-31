@@ -1,19 +1,7 @@
 from flask import Flask, jsonify
 import sqlite3
 from pathlib import Path
-from zipfile import ZipFile
 
-# === DESCOMPRESIÓN MODULAR ===
-def descomprimir_db_si_necesario(zip_name="fmp_datafree.db.zip", db_name="fmp_datafree.db"):
-    zip_path = Path(zip_name)
-    db_path = Path(db_name)
-    if zip_path.exists() and not db_path.exists():
-        with ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall()
-            print("✅ Base de datos descomprimida")
-
-# Ejecutar descompresión al inicio
-descomprimir_db_si_necesario()
 
 # === CONFIGURACIÓN FLASK ===
 app = Flask(__name__)
