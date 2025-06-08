@@ -1,4 +1,14 @@
+
+# Entorno virtual
+venv/
+.env
 __pycache__/
 *.pyc
+.idea/
+chromedriver.exe
+*.zip
+*.log
+*.sqlite
 *.db
-.env
+logs/
+credentials.json
