@@ -22,11 +22,11 @@ def crear_tabla_plana_balance():
 
     for ticker, anio, raw in tqdm(rows, desc="📥 Procesando"):
         try:
-            cursor.execute(f"SELECT 1 FROM {TABLE_DESTINO} WHERE ticker = ? AND anio = ?", (ticker, anio))
+            cursor.execute(f"SELECT 1 FROM {TABLE_DESTINO} WHERE ticker = %s AND anio = %s", (ticker, anio))
             if cursor.fetchone():
                 duplicados += 1
                 continue
-            cursor.execute(f"INSERT INTO {TABLE_DESTINO} (ticker, anio, raw_json) VALUES (?, ?, ?)", (ticker, anio, raw))
+            cursor.execute(f"INSERT INTO {TABLE_DESTINO} (ticker, anio, raw_json) VALUES (%s, %s, %s)", (ticker, anio, raw))
             insertados += 1
         except Exception:
             fallidos += 1

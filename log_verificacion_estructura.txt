@@ -1,0 +1,218 @@
+[2025-06-08 03:58:15] 🔍 Iniciando verificación de estructura entre SQLite y PostgreSQL...
+
+[2025-06-08 03:58:15] 📂 Verificando tabla: income_statement_plana
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'income_statement_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM income_statement_plana LIMIT 1': no existe la relación «income_statement_plana»
+LINE 1: SELECT * FROM income_statement_plana LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'income_statement_plana':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'researchAndDevelopmentExpenses', 'revenue', 'totalOtherIncomeExpensesNet', 'sellingGeneralAndAdministrativeExpenses', 'interestIncome', 'depreciationAndAmortization', 'ticker', 'otherExpenses', 'weightedAverageShsOutDil', 'operatingExpenses', 'incomeBeforeTax', 'grossProfit', 'netIncome', 'interestExpense', 'costOfRevenue', 'ebitda', 'operatingIncome', 'eps'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: balance_sheet_plana
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'balance_sheet_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM balance_sheet_plana LIMIT 1': no existe la relación «balance_sheet_plana»
+LINE 1: SELECT * FROM balance_sheet_plana LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'balance_sheet_plana':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'totalEquity', 'totalAssets', 'otherAssets', 'inventory', 'preferredStock', 'totalLiabilities', 'totalStockholdersEquity', 'ticker', 'cashAndShortTermInvestments', 'commonStock', 'longTermDebt', 'deferredTaxLiabilitiesNonCurrent', 'otherCurrentAssets', 'propertyPlantEquipmentNet', 'totalNonCurrentAssets', 'totalLiabilitiesAndTotalEquity', 'taxAssets', 'goodwill', 'anio', 'totalCurrentLiabilities', 'otherLiabilities', 'raw_json', 'totalCurrentAssets', 'accountPayables', 'intangibleAssets', 'totalNonCurrentLiabilities', 'totalInvestments', 'totalDebt', 'cashAndCashEquivalents', 'goodwillAndIntangibleAssets', 'otherCurrentLiabilities', 'capitalLeaseObligations', 'deferredRevenue', 'netDebt', 'shortTermDebt', 'retainedEarnings', 'shortTermInvestments', 'netReceivables', 'minorityInterest', 'deferredRevenueNonCurrent'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: cashflow_statement_plana
+[2025-06-08 03:58:15] ❌ Error al leer tabla SQLite 'cashflow_statement_plana': Execution failed on sql 'SELECT * FROM cashflow_statement_plana LIMIT 1': no such table: cashflow_statement_plana
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'cashflow_statement_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM cashflow_statement_plana LIMIT 1': no existe la relación «cashflow_statement_plana»
+LINE 1: SELECT * FROM cashflow_statement_plana LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] 📂 Verificando tabla: ratios_plana
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'ratios_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM ratios_plana LIMIT 1': no existe la relación «ratios_plana»
+LINE 1: SELECT * FROM ratios_plana LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'ratios_plana':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'capitalExpenditureCoverageRatio', 'priceCashFlowRatio', 'companyEquityMultiplier', 'daysOfPayablesOutstanding', 'returnOnEquity', 'payoutRatio', 'daysOfInventoryOutstanding', 'receivablesTurnover', 'dividendYield', 'returnOnCapitalEmployed', 'grossProfitMargin', 'ticker', 'longTermDebtToCapitalization', 'priceFairValue', 'effectiveTaxRate', 'priceEarningsRatio', 'priceToBookRatio', 'currentRatio', 'priceToFreeCashFlowsRatio', 'ebtPerEbit', 'freeCashFlowPerShare', 'cashConversionCycle', 'ebitPerRevenue', 'cashPerShare', 'dividendPaidAndCapexCoverageRatio', 'fixedAssetTurnover', 'anio', 'shortTermCoverageRatios', 'netProfitMargin', 'netIncomePerEBT', 'cashFlowToDebtRatio', 'freeCashFlowOperatingCashFlowRatio', 'enterpriseValueMultiple', 'operatingProfitMargin', 'pretaxProfitMargin', 'operatingCashFlowPerShare', 'daysOfSalesOutstanding', 'totalDebtToCapitalization', 'inventoryTurnover', 'operatingCycle', 'assetTurnover', 'cashFlowCoverageRatios', 'debtRatio', 'priceToSalesRatio', 'priceEarningsToGrowthRatio', 'interestCoverage', 'cashRatio', 'payablesTurnover', 'operatingCashFlowSalesRatio', 'priceSalesRatio', 'priceBookValueRatio', 'quickRatio', 'returnOnAssets', 'debtEquityRatio', 'priceToOperatingCashFlowsRatio', 'dividendPayoutRatio'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: key_metrics_simplificada
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'key_metrics_simplificada' no existe o no está accesible: Execution failed on sql 'SELECT * FROM key_metrics_simplificada LIMIT 1': no existe la relación «key_metrics_simplificada»
+LINE 1: SELECT * FROM key_metrics_simplificada LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'key_metrics_simplificada':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'payoutRatio', 'dividendYield', 'peRatio', 'earningsYield', 'ticker', 'pfcfRatio', 'bookValuePerShare', 'marketCap', 'freeCashFlowYield', 'currentRatio', 'shareholdersEquityPerShare', 'debtToAssets', 'pbRatio', 'freeCashFlowPerShare', 'pocfratio', 'enterpriseValueOverEBITDA', 'debtToEquity', 'revenuePerShare', 'cashPerShare', 'evToSales', 'evToOperatingCashFlow', 'ptbRatio', 'anio', 'netIncomePerShare', 'tangibleBookValuePerShare', 'operatingCashFlowPerShare', 'netDebtToEBITDA', 'interestDebtPerShare', 'priceToSalesRatio', 'evToFreeCashFlow', 'capexPerShare', 'interestCoverage', 'enterpriseValue', 'incomeQuality'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: analyst_estimates_plana
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'analyst_estimates_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM analyst_estimates_plana LIMIT 1': no existe la relación «analyst_estimates_plana»
+LINE 1: SELECT * FROM analyst_estimates_plana LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'analyst_estimates_plana':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'estimatedSgaExpenseHigh', 'estimatedEbitdaAvg', 'estimatedRevenueLow', 'estimatedEpsHigh', 'estimatedSgaExpenseAvg', 'estimatedRevenueHigh', 'numberAnalystEstimatedRevenue', 'ticker', 'estimatedSgaExpenseLow', 'estimatedNetIncomeHigh', 'estimatedRevenueAvg', 'estimatedEpsLow', 'estimatedEbitHigh', 'estimatedEbitAvg', 'estimatedNetIncomeAvg', 'estimatedEbitdaLow', 'numberAnalystsEstimatedEps', 'estimatedEbitLow', 'estimatedNetIncomeLow', 'estimatedEpsAvg', 'estimatedEbitdaHigh'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: enterprise_value_plana
+[2025-06-08 03:58:15] ❌ Error al leer tabla SQLite 'enterprise_value_plana': Execution failed on sql 'SELECT * FROM enterprise_value_plana LIMIT 1': no such table: enterprise_value_plana
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'enterprise_value_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM enterprise_value_plana LIMIT 1': no existe la relación «enterprise_value_plana»
+LINE 1: SELECT * FROM enterprise_value_plana LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] 📂 Verificando tabla: income_statement
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'income_statement' no existe o no está accesible: Execution failed on sql 'SELECT * FROM income_statement LIMIT 1': no existe la relación «income_statement»
+LINE 1: SELECT * FROM income_statement LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'income_statement':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: balance_sheet
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'balance_sheet' no existe o no está accesible: Execution failed on sql 'SELECT * FROM balance_sheet LIMIT 1': no existe la relación «balance_sheet»
+LINE 1: SELECT * FROM balance_sheet LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'balance_sheet':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: cash_flow
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'cash_flow' no existe o no está accesible: Execution failed on sql 'SELECT * FROM cash_flow LIMIT 1': no existe la relación «cash_flow»
+LINE 1: SELECT * FROM cash_flow LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'cash_flow':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: enterprise_values
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'enterprise_values' no existe o no está accesible: Execution failed on sql 'SELECT * FROM enterprise_values LIMIT 1': no existe la relación «enterprise_values»
+LINE 1: SELECT * FROM enterprise_values LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'enterprise_values':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: ratios
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'ratios' no existe o no está accesible: Execution failed on sql 'SELECT * FROM ratios LIMIT 1': no existe la relación «ratios»
+LINE 1: SELECT * FROM ratios LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'ratios':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: key_metrics
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'key_metrics' no existe o no está accesible: Execution failed on sql 'SELECT * FROM key_metrics LIMIT 1': no existe la relación «key_metrics»
+LINE 1: SELECT * FROM key_metrics LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'key_metrics':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: analyst_estimates
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'analyst_estimates' no existe o no está accesible: Execution failed on sql 'SELECT * FROM analyst_estimates LIMIT 1': no existe la relación «analyst_estimates»
+LINE 1: SELECT * FROM analyst_estimates LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'analyst_estimates':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 03:58:15] 📂 Verificando tabla: tickers_consultados
+[2025-06-08 03:58:15] ⚠️ PostgreSQL: tabla 'tickers_consultados' no existe o no está accesible: Execution failed on sql 'SELECT * FROM tickers_consultados LIMIT 1': no existe la relación «tickers_consultados»
+LINE 1: SELECT * FROM tickers_consultados LIMIT 1
+                      ^
+
+[2025-06-08 03:58:15] ⚠️ Diferencias en estructura de 'tickers_consultados':
+[2025-06-08 03:58:15]    - Columnas solo en SQLite: {'industria', 'sector', 'enterprise_value', 'ticker', 'nombre_empresa', 'fecha_consulta', 'market_cap'}
+[2025-06-08 03:58:15] 
+✅ Verificación de estructuras completada.
+
+[2025-06-08 04:12:58] 🔍 Iniciando verificación de estructura entre SQLite y PostgreSQL...
+
+[2025-06-08 04:12:58] 📂 Verificando tabla: income_statement_plana
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'income_statement_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM income_statement_plana LIMIT 1': no existe la relación «income_statement_plana»
+LINE 1: SELECT * FROM income_statement_plana LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'income_statement_plana':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'sellingGeneralAndAdministrativeExpenses', 'revenue', 'ticker', 'weightedAverageShsOutDil', 'depreciationAndAmortization', 'ebitda', 'operatingExpenses', 'anio', 'eps', 'netIncome', 'costOfRevenue', 'otherExpenses', 'researchAndDevelopmentExpenses', 'incomeBeforeTax', 'interestExpense', 'grossProfit', 'totalOtherIncomeExpensesNet', 'interestIncome', 'operatingIncome'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: balance_sheet_plana
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'balance_sheet_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM balance_sheet_plana LIMIT 1': no existe la relación «balance_sheet_plana»
+LINE 1: SELECT * FROM balance_sheet_plana LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'balance_sheet_plana':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'ticker', 'longTermDebt', 'otherCurrentAssets', 'totalEquity', 'totalLiabilities', 'inventory', 'netDebt', 'accountPayables', 'otherCurrentLiabilities', 'raw_json', 'cashAndShortTermInvestments', 'deferredRevenueNonCurrent', 'taxAssets', 'deferredTaxLiabilitiesNonCurrent', 'goodwillAndIntangibleAssets', 'totalInvestments', 'totalAssets', 'otherAssets', 'commonStock', 'netReceivables', 'totalNonCurrentLiabilities', 'totalLiabilitiesAndTotalEquity', 'intangibleAssets', 'shortTermDebt', 'deferredRevenue', 'totalDebt', 'totalStockholdersEquity', 'propertyPlantEquipmentNet', 'shortTermInvestments', 'retainedEarnings', 'preferredStock', 'anio', 'totalCurrentAssets', 'cashAndCashEquivalents', 'otherLiabilities', 'totalNonCurrentAssets', 'totalCurrentLiabilities', 'goodwill', 'minorityInterest', 'capitalLeaseObligations'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: cash_flow_plana
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'cash_flow_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM cash_flow_plana LIMIT 1': no existe la relación «cash_flow_plana»
+LINE 1: SELECT * FROM cash_flow_plana LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'cash_flow_plana':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'netCashUsedForInvestingActivites', 'ticker', 'depreciationAndAmortization', 'investmentsInPropertyPlantAndEquipment', 'salesMaturitiesOfInvestments', 'inventory', 'dividendsPaid', 'netCashUsedProvidedByFinancingActivities', 'deferredIncomeTax', 'netChangeInCash', 'freeCashFlow', 'debtRepayment', 'effectOfForexChangesOnCash', 'purchasesOfInvestments', 'cashAtBeginningOfPeriod', 'stockBasedCompensation', 'changeInWorkingCapital', 'anio', 'commonStockIssued', 'netIncome', 'operatingCashFlow', 'accountsReceivables', 'capitalExpenditure', 'cashAtEndOfPeriod', 'commonStockRepurchased', 'netCashProvidedByOperatingActivities', 'accountsPayables', 'acquisitionsNet', 'otherWorkingCapital', 'otherNonCashItems', 'otherInvestingActivites', 'otherFinancingActivites'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: ratios_plana
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'ratios_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM ratios_plana LIMIT 1': no existe la relación «ratios_plana»
+LINE 1: SELECT * FROM ratios_plana LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'ratios_plana':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'assetTurnover', 'priceSalesRatio', 'receivablesTurnover', 'ticker', 'daysOfPayablesOutstanding', 'returnOnCapitalEmployed', 'cashConversionCycle', 'returnOnEquity', 'freeCashFlowOperatingCashFlowRatio', 'totalDebtToCapitalization', 'companyEquityMultiplier', 'grossProfitMargin', 'priceEarningsToGrowthRatio', 'currentRatio', 'freeCashFlowPerShare', 'pretaxProfitMargin', 'priceCashFlowRatio', 'cashFlowToDebtRatio', 'netIncomePerEBT', 'ebtPerEbit', 'cashFlowCoverageRatios', 'effectiveTaxRate', 'operatingCycle', 'fixedAssetTurnover', 'operatingCashFlowSalesRatio', 'payoutRatio', 'operatingProfitMargin', 'returnOnAssets', 'payablesTurnover', 'operatingCashFlowPerShare', 'priceBookValueRatio', 'dividendYield', 'priceToBookRatio', 'priceToOperatingCashFlowsRatio', 'priceEarningsRatio', 'longTermDebtToCapitalization', 'anio', 'priceFairValue', 'quickRatio', 'debtRatio', 'inventoryTurnover', 'priceToSalesRatio', 'priceToFreeCashFlowsRatio', 'ebitPerRevenue', 'netProfitMargin', 'shortTermCoverageRatios', 'daysOfInventoryOutstanding', 'cashRatio', 'interestCoverage', 'capitalExpenditureCoverageRatio', 'dividendPayoutRatio', 'enterpriseValueMultiple', 'daysOfSalesOutstanding', 'dividendPaidAndCapexCoverageRatio', 'cashPerShare', 'debtEquityRatio'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: key_metrics_simplificada
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'key_metrics_simplificada' no existe o no está accesible: Execution failed on sql 'SELECT * FROM key_metrics_simplificada LIMIT 1': no existe la relación «key_metrics_simplificada»
+LINE 1: SELECT * FROM key_metrics_simplificada LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'key_metrics_simplificada':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'ticker', 'freeCashFlowYield', 'shareholdersEquityPerShare', 'enterpriseValueOverEBITDA', 'pfcfRatio', 'earningsYield', 'currentRatio', 'freeCashFlowPerShare', 'pbRatio', 'incomeQuality', 'enterpriseValue', 'interestDebtPerShare', 'peRatio', 'marketCap', 'payoutRatio', 'operatingCashFlowPerShare', 'capexPerShare', 'dividendYield', 'tangibleBookValuePerShare', 'anio', 'ptbRatio', 'pocfratio', 'evToSales', 'priceToSalesRatio', 'revenuePerShare', 'evToOperatingCashFlow', 'bookValuePerShare', 'debtToAssets', 'interestCoverage', 'netIncomePerShare', 'debtToEquity', 'evToFreeCashFlow', 'netDebtToEBITDA', 'cashPerShare'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: analyst_estimates_plana
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'analyst_estimates_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM analyst_estimates_plana LIMIT 1': no existe la relación «analyst_estimates_plana»
+LINE 1: SELECT * FROM analyst_estimates_plana LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'analyst_estimates_plana':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'estimatedEpsLow', 'ticker', 'estimatedSgaExpenseHigh', 'numberAnalystEstimatedRevenue', 'estimatedEbitdaHigh', 'estimatedEbitdaLow', 'estimatedNetIncomeLow', 'anio', 'estimatedEbitLow', 'estimatedNetIncomeHigh', 'estimatedEbitHigh', 'estimatedEpsAvg', 'estimatedRevenueLow', 'estimatedRevenueAvg', 'estimatedEbitAvg', 'estimatedEpsHigh', 'estimatedSgaExpenseLow', 'estimatedSgaExpenseAvg', 'estimatedRevenueHigh', 'numberAnalystsEstimatedEps', 'estimatedEbitdaAvg', 'estimatedNetIncomeAvg'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: enterprise_values_plana
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'enterprise_values_plana' no existe o no está accesible: Execution failed on sql 'SELECT * FROM enterprise_values_plana LIMIT 1': no existe la relación «enterprise_values_plana»
+LINE 1: SELECT * FROM enterprise_values_plana LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'enterprise_values_plana':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'marketCapitalization', 'anio', 'addTotalDebt', 'ticker', 'numberOfShares', 'enterpriseValue', 'minusCashAndCashEquivalents'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: income_statement
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'income_statement' no existe o no está accesible: Execution failed on sql 'SELECT * FROM income_statement LIMIT 1': no existe la relación «income_statement»
+LINE 1: SELECT * FROM income_statement LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'income_statement':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: balance_sheet
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'balance_sheet' no existe o no está accesible: Execution failed on sql 'SELECT * FROM balance_sheet LIMIT 1': no existe la relación «balance_sheet»
+LINE 1: SELECT * FROM balance_sheet LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'balance_sheet':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: cash_flow
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'cash_flow' no existe o no está accesible: Execution failed on sql 'SELECT * FROM cash_flow LIMIT 1': no existe la relación «cash_flow»
+LINE 1: SELECT * FROM cash_flow LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'cash_flow':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: enterprise_values
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'enterprise_values' no existe o no está accesible: Execution failed on sql 'SELECT * FROM enterprise_values LIMIT 1': no existe la relación «enterprise_values»
+LINE 1: SELECT * FROM enterprise_values LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'enterprise_values':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: ratios
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'ratios' no existe o no está accesible: Execution failed on sql 'SELECT * FROM ratios LIMIT 1': no existe la relación «ratios»
+LINE 1: SELECT * FROM ratios LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'ratios':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: key_metrics
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'key_metrics' no existe o no está accesible: Execution failed on sql 'SELECT * FROM key_metrics LIMIT 1': no existe la relación «key_metrics»
+LINE 1: SELECT * FROM key_metrics LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'key_metrics':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: analyst_estimates
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'analyst_estimates' no existe o no está accesible: Execution failed on sql 'SELECT * FROM analyst_estimates LIMIT 1': no existe la relación «analyst_estimates»
+LINE 1: SELECT * FROM analyst_estimates LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'analyst_estimates':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'anio', 'ticker', 'raw_json'}
+[2025-06-08 04:12:58] 📂 Verificando tabla: tickers_consultados
+[2025-06-08 04:12:58] ⚠️ PostgreSQL: tabla 'tickers_consultados' no existe o no está accesible: Execution failed on sql 'SELECT * FROM tickers_consultados LIMIT 1': no existe la relación «tickers_consultados»
+LINE 1: SELECT * FROM tickers_consultados LIMIT 1
+                      ^
+
+[2025-06-08 04:12:58] ⚠️ Diferencias en estructura de 'tickers_consultados':
+[2025-06-08 04:12:58]    - Columnas solo en SQLite: {'enterprise_value', 'ticker', 'nombre_empresa', 'market_cap', 'industria', 'sector', 'fecha_consulta'}
+[2025-06-08 04:12:58] 
+✅ Verificación de estructuras completada.
+

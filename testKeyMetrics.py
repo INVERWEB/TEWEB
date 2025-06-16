@@ -1,7 +1,7 @@
 import sqlite3
 import json
 
-DB_PATH = r"E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/INVERSORWEB/fmp_datafree.db"
+DB_PATH = r"E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/fmp_datafree.db"
 TABLE_ORIGEN = "key_metrics"
 TABLE_DESTINO = "key_metrics_simplificada"
 
@@ -68,7 +68,7 @@ def crear_tabla_simplificada():
         try:
             data = json.loads(raw_json)
             # Verificar si ya existe
-            cur.execute(f"SELECT 1 FROM {TABLE_DESTINO} WHERE ticker = ? AND anio = ?", (ticker, anio))
+            cur.execute(f"SELECT 1 FROM {TABLE_DESTINO} WHERE ticker = %s AND anio = %s", (ticker, anio))
             if cur.fetchone():
                 duplicados += 1
                 continue
@@ -77,7 +77,7 @@ def crear_tabla_simplificada():
             cur.execute(
                 f"""INSERT INTO {TABLE_DESTINO} 
                 (ticker, anio, {', '.join(CAMPOS)}) 
-                VALUES (?, ?, {', '.join(['?'] * len(CAMPOS))})""",
+                VALUES (%s, %s, {', '.join(['%s'] * len(CAMPOS))})""",
                 (ticker, anio, *valores)
             )
             insertados += 1

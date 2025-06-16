@@ -14,10 +14,10 @@ from utils.db_utils import (
 )
 
 # === CONFIGURACIÓN ===
-MAX_TICKERS = 1000
-DB_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/INVERSORWEB/fmp_datafree.db")
-LOG_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/INVERSORWEB/log_resultados.txt")
-TICKERS_OUT_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/INVERSORWEB/tickers_validos.txt")
+MAX_TICKERS = 500
+DB_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/fmp_datafree.db")
+LOG_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/log_resultados.txt")
+TICKERS_OUT_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/tickers_validos.txt")
 
 # === FUNCIONES DE UTILIDAD ===
 def log_resultado(texto):
@@ -33,8 +33,12 @@ def main():
 
     tickers_api = get_tickers_by_exchange_list()
     tickers_api = [t for t in tickers_api if t and t[0].isalpha()]  # Solo tickers que empiezan con letra
-    tickers_pendientes = tickers_api[offset_actual:]
-    tickers_a_procesar = [t for t in tickers_pendientes if not ya_existe_ticker(t, DB_PATH)][:MAX_TICKERS]
+    print(f"📊 Total tickers descargados: {len(tickers_api)}")
+    nuevos = [t for t in tickers_api if not ya_existe_ticker(t, DB_PATH)]
+    print(f"🧮 Tickers que aún no existen en la base: {len(nuevos)}")
+
+    tickers_nuevos = [t for t in tickers_api if not ya_existe_ticker(t, DB_PATH)]
+    tickers_a_procesar = tickers_nuevos[offset_actual:offset_actual + MAX_TICKERS]
 
     try:
         TICKERS_OUT_PATH.write_text("\n".join(tickers_a_procesar), encoding="utf-8")
@@ -82,7 +86,7 @@ def main():
                 insertar_json_generico(tipo, ticker, content, DB_PATH)
 
         total_procesados += 1
-        sleep(0.25)
+        sleep(0.15)
 
     nuevo_offset = offset_actual + len(tickers_a_procesar)
     actualizar_offset(nuevo_offset)

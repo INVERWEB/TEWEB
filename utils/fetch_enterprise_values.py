@@ -46,7 +46,7 @@ def fetch_and_store_enterprise_values(ticker):
                     ticker, date, marketCapitalization, enterpriseValue,
                     numberOfShares, stockPrice, cashAndCashEquivalents,
                     totalDebt, ebitda
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             """, (
                 ticker,
                 entry.get("date"),

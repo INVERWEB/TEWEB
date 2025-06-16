@@ -15,10 +15,10 @@ fallidos = []
 
 for ticker, anio, raw in rows:
     try:
-        cursor.execute(f"SELECT 1 FROM {TABLE_DESTINO} WHERE ticker = ? AND anio = ?", (ticker, anio))
+        cursor.execute(f"SELECT 1 FROM {TABLE_DESTINO} WHERE ticker = %s AND anio = %s", (ticker, anio))
         if cursor.fetchone():
             continue
-        cursor.execute(f"INSERT INTO {TABLE_DESTINO} (ticker, anio, raw_json) VALUES (?, ?, ?)", (ticker, anio, raw))
+        cursor.execute(f"INSERT INTO {TABLE_DESTINO} (ticker, anio, raw_json) VALUES (%s, %s, %s)", (ticker, anio, raw))
         conn.rollback()  # Revertimos para no escribir nada realmente
     except Exception as e:
         print(f"❌ Error: {ticker}-{anio} → {e}")

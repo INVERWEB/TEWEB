@@ -45,7 +45,7 @@ def reformatear_tabla_origen(nombre_tabla, campo_anio):
                     anio,
                     json.dumps(entry)
                 )
-                cur.execute(f"INSERT INTO {tabla_destino} (ticker, anio, raw_json) VALUES (?, ?, ?)", fila)
+                cur.execute(f"INSERT INTO {tabla_destino} (ticker, anio, raw_json) VALUES (%s, %s, %s)", fila)
                 insertados += 1
 
         except Exception as e:

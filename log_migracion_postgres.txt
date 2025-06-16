@@ -1,0 +1,576 @@
+[2025-06-08 05:54:25] 🚀 Inicio general de migración
+
+[2025-06-08 05:54:25] 📦 Iniciando migración de tabla: income_statement_plana
+[2025-06-08 05:54:25] ❌ Error al migrar 'income_statement_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:25] 📦 Iniciando migración de tabla: balance_sheet_plana
+[2025-06-08 05:54:27] ❌ Error al migrar 'balance_sheet_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:27] 📦 Iniciando migración de tabla: cashflow_statement_plana
+[2025-06-08 05:54:27] ⚠️ Tabla 'cashflow_statement_plana' no existe en SQLite. Saltando...
+
+[2025-06-08 05:54:27] 📦 Iniciando migración de tabla: ratios_plana
+[2025-06-08 05:54:29] ❌ Error al migrar 'ratios_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:29] 📦 Iniciando migración de tabla: key_metrics_simplificada
+[2025-06-08 05:54:29] ❌ Error al migrar 'key_metrics_simplificada': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:29] 📦 Iniciando migración de tabla: analyst_estimates_plana
+[2025-06-08 05:54:30] ❌ Error al migrar 'analyst_estimates_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:30] 📦 Iniciando migración de tabla: enterprise_value_plana
+[2025-06-08 05:54:30] ⚠️ Tabla 'enterprise_value_plana' no existe en SQLite. Saltando...
+
+[2025-06-08 05:54:30] 📦 Iniciando migración de tabla: income_statement
+[2025-06-08 05:54:32] ❌ Error al migrar 'income_statement': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:32] 📦 Iniciando migración de tabla: balance_sheet
+[2025-06-08 05:54:35] ❌ Error al migrar 'balance_sheet': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:35] 📦 Iniciando migración de tabla: cash_flow
+[2025-06-08 05:54:36] ❌ Error al migrar 'cash_flow': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:36] 📦 Iniciando migración de tabla: enterprise_values
+[2025-06-08 05:54:37] ❌ Error al migrar 'enterprise_values': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:37] 📦 Iniciando migración de tabla: ratios
+[2025-06-08 05:54:40] ❌ Error al migrar 'ratios': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:40] 📦 Iniciando migración de tabla: key_metrics
+[2025-06-08 05:54:40] ❌ Error al migrar 'key_metrics': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:40] 📦 Iniciando migración de tabla: analyst_estimates
+[2025-06-08 05:54:40] ❌ Error al migrar 'analyst_estimates': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:40] 📦 Iniciando migración de tabla: tickers_consultados
+[2025-06-08 05:54:40] ❌ Error al migrar 'tickers_consultados': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 05:54:40] ✅ Migración completada para todas las tablas.
+
+[2025-06-08 06:07:01] 🚀 Inicio general de migración
+
+[2025-06-08 06:07:01] 📦 Iniciando migración de tabla: income_statement_plana
+[2025-06-08 06:07:01] ❌ Error al migrar 'income_statement_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:01] 📦 Iniciando migración de tabla: balance_sheet_plana
+[2025-06-08 06:07:03] ❌ Error al migrar 'balance_sheet_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:03] 📦 Iniciando migración de tabla: cashflow_statement_plana
+[2025-06-08 06:07:03] ⚠️ Tabla 'cashflow_statement_plana' no existe en SQLite. Saltando...
+
+[2025-06-08 06:07:03] 📦 Iniciando migración de tabla: ratios_plana
+[2025-06-08 06:07:04] ❌ Error al migrar 'ratios_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:04] 📦 Iniciando migración de tabla: key_metrics_simplificada
+[2025-06-08 06:07:05] ❌ Error al migrar 'key_metrics_simplificada': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:05] 📦 Iniciando migración de tabla: analyst_estimates_plana
+[2025-06-08 06:07:05] ❌ Error al migrar 'analyst_estimates_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:05] 📦 Iniciando migración de tabla: enterprise_value_plana
+[2025-06-08 06:07:05] ⚠️ Tabla 'enterprise_value_plana' no existe en SQLite. Saltando...
+
+[2025-06-08 06:07:05] 📦 Iniciando migración de tabla: income_statement
+[2025-06-08 06:07:07] ❌ Error al migrar 'income_statement': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:07] 📦 Iniciando migración de tabla: balance_sheet
+[2025-06-08 06:07:09] ❌ Error al migrar 'balance_sheet': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:09] 📦 Iniciando migración de tabla: cash_flow
+[2025-06-08 06:07:11] ❌ Error al migrar 'cash_flow': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:11] 📦 Iniciando migración de tabla: enterprise_values
+[2025-06-08 06:07:12] ❌ Error al migrar 'enterprise_values': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:12] 📦 Iniciando migración de tabla: ratios
+[2025-06-08 06:07:14] ❌ Error al migrar 'ratios': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:14] 📦 Iniciando migración de tabla: key_metrics
+[2025-06-08 06:07:14] ❌ Error al migrar 'key_metrics': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:14] 📦 Iniciando migración de tabla: analyst_estimates
+[2025-06-08 06:07:14] ❌ Error al migrar 'analyst_estimates': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:14] 📦 Iniciando migración de tabla: tickers_consultados
+[2025-06-08 06:07:14] ❌ Error al migrar 'tickers_consultados': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:07:14] ✅ Migración completada para todas las tablas.
+
+[2025-06-08 06:10:25] 🚀 Inicio general de migración
+
+[2025-06-08 06:10:25] 📦 Iniciando migración de tabla: income_statement_plana
+[2025-06-08 06:10:25] ❌ Error al migrar 'income_statement_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:25] 📦 Iniciando migración de tabla: balance_sheet_plana
+[2025-06-08 06:10:27] ❌ Error al migrar 'balance_sheet_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:27] 📦 Iniciando migración de tabla: cashflow_statement_plana
+[2025-06-08 06:10:27] ⚠️ Tabla 'cashflow_statement_plana' no existe en SQLite. Saltando...
+
+[2025-06-08 06:10:27] 📦 Iniciando migración de tabla: ratios_plana
+[2025-06-08 06:10:29] ❌ Error al migrar 'ratios_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:29] 📦 Iniciando migración de tabla: key_metrics_simplificada
+[2025-06-08 06:10:29] ❌ Error al migrar 'key_metrics_simplificada': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:29] 📦 Iniciando migración de tabla: analyst_estimates_plana
+[2025-06-08 06:10:29] ❌ Error al migrar 'analyst_estimates_plana': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:29] 📦 Iniciando migración de tabla: enterprise_value_plana
+[2025-06-08 06:10:29] ⚠️ Tabla 'enterprise_value_plana' no existe en SQLite. Saltando...
+
+[2025-06-08 06:10:29] 📦 Iniciando migración de tabla: income_statement
+[2025-06-08 06:10:32] ❌ Error al migrar 'income_statement': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:32] 📦 Iniciando migración de tabla: balance_sheet
+[2025-06-08 06:10:34] ❌ Error al migrar 'balance_sheet': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:34] 📦 Iniciando migración de tabla: cash_flow
+[2025-06-08 06:10:37] ❌ Error al migrar 'cash_flow': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:37] 📦 Iniciando migración de tabla: enterprise_values
+[2025-06-08 06:10:37] ❌ Error al migrar 'enterprise_values': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:37] 📦 Iniciando migración de tabla: ratios
+[2025-06-08 06:10:40] ❌ Error al migrar 'ratios': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:40] 📦 Iniciando migración de tabla: key_metrics
+[2025-06-08 06:10:40] ❌ Error al migrar 'key_metrics': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:40] 📦 Iniciando migración de tabla: analyst_estimates
+[2025-06-08 06:10:40] ❌ Error al migrar 'analyst_estimates': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:40] 📦 Iniciando migración de tabla: tickers_consultados
+[2025-06-08 06:10:40] ❌ Error al migrar 'tickers_consultados': Execution failed on sql '
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type IN ('table', 'view')
+            AND name=?;
+        ': error de sintaxis en o cerca de «;»
+LINE 8:             AND name=?;
+                              ^
+
+
+[2025-06-08 06:10:40] ✅ Migración completada para todas las tablas.
+

@@ -29,7 +29,7 @@ def listar_sectores():
     with conectar() as conn:
         cur = conn.cursor()
         for alias, nombre in SECTOR_ALIAS.items():
-            cur.execute("SELECT COUNT(*) FROM tickers_consultados WHERE sector = ?", (nombre,))
+            cur.execute("SELECT COUNT(*) FROM tickers_consultados WHERE sector = %s", (nombre,))
             cantidad = cur.fetchone()[0]
             print(f"<{nombre}>  {{{alias}}} = {cantidad} tickers")
 
@@ -46,7 +46,7 @@ def explorar_industrias(alias_sector):
         cur.execute("""
             SELECT COALESCE(industria, 'None') AS industria, COUNT(*) 
             FROM tickers_consultados
-            WHERE sector = ?
+            WHERE sector = %s
             GROUP BY industria
             ORDER BY COUNT(*) DESC
         """, (sector,))
@@ -66,7 +66,7 @@ def listar_tickers_en_industria(industria_nombre):
         cur.execute("""
             SELECT ticker, nombre_empresa
             FROM tickers_consultados
-            WHERE industria IS ? OR industria = ?
+            WHERE industria IS %s OR industria = %s
             ORDER BY nombre_empresa
         """, (None if industria_nombre == "None" else industria_nombre, industria_nombre))
         tickers = cur.fetchall()

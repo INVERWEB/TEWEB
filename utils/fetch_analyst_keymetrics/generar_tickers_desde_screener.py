@@ -7,10 +7,10 @@ load_dotenv()
 API_KEY = os.getenv("FMP_API_KEY")
 
 # === CONFIGURACIÓN ===
-SECTOR = "Technology"
+SECTOR = "Energy"
 LIMIT = 5000
 EXCHANGES_VALIDOS = ["NASDAQ", "NYSE", "AMEX"]
-TICKERS_OUT = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/INVERSORWEB/tickers_validos_analyst_key.txt")
+TICKERS_OUT = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/tickers_validos_analyst_key.txt")
 
 def obtener_tickers_desde_screener():
     tickers = []

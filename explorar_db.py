@@ -10,7 +10,7 @@ def buscar_metadata(ticker):
         cursor.execute("""
             SELECT nombre_empresa, sector, industria, market_cap, enterprise_value, fecha_consulta
             FROM tickers_consultados
-            WHERE ticker = ?
+            WHERE ticker = %s
         """, (ticker,))
         row = cursor.fetchone()
 
@@ -27,7 +27,7 @@ def buscar_metadata(ticker):
         print("⚠️ No se encontró el ticker en la base de datos.")
 
 def mostrar_menu():
-    print("""¿🔎 Qué exploramos hoy?
+    print("""¿🔎 Qué exploramos hoy %s
 📁 Income Statement = p&l
 📁 Balance Sheet = balance
 📁 Cash Flow = cashflow
@@ -57,18 +57,18 @@ def procesar_comando(ticker, comando):
                 inicio, fin = partes[2].split(":")
                 query = """
                     SELECT * FROM ratios
-                    WHERE anio BETWEEN ? AND ?
+                    WHERE anio BETWEEN %s AND %s
                     ORDER BY anio DESC
-                    LIMIT ?
+                    LIMIT %s
                 """
                 mostrar_tabla(query, (inicio, fin, cantidad))
             else:
                 anio = partes[2]
                 query = """
                     SELECT * FROM ratios
-                    WHERE anio = ?
+                    WHERE anio = %s
                     ORDER BY anio DESC
-                    LIMIT ?
+                    LIMIT %s
                 """
                 mostrar_tabla(query, (anio, cantidad))
         except Exception as e:
@@ -85,14 +85,14 @@ def procesar_comando(ticker, comando):
                 inicio, fin = año_rango.split(":")
                 query = f"""
                     SELECT * FROM {tabla}
-                    WHERE ticker = ? AND anio BETWEEN ? AND ?
+                    WHERE ticker = %s AND anio BETWEEN %s AND %s
                     ORDER BY anio DESC
                 """
                 mostrar_tabla(query, (ticker, inicio, fin))
             else:
                 query = f"""
                     SELECT * FROM {tabla}
-                    WHERE ticker = ? AND anio = ?
+                    WHERE ticker = %s AND anio = %s
                 """
                 mostrar_tabla(query, (ticker, año_rango))
         except:
@@ -100,7 +100,7 @@ def procesar_comando(ticker, comando):
     else:
         query = f"""
             SELECT * FROM {tabla}
-            WHERE ticker = ?
+            WHERE ticker = %s
             ORDER BY anio DESC
         """
         mostrar_tabla(query, (ticker,))

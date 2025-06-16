@@ -31,8 +31,8 @@ for ticker, anio, raw in registros:
         data = json.loads(raw)
         valores = [data.get(c) for c in CAMPOS]
 
-        set_clause = ", ".join([f"{campo} = ?" for campo in CAMPOS])
-        sql = f"UPDATE {TABLE} SET {set_clause} WHERE ticker = ? AND anio = ?"
+        set_clause = ", ".join([f"{campo} = %s" for campo in CAMPOS])
+        sql = f"UPDATE {TABLE} SET {set_clause} WHERE ticker = %s AND anio = %s"
 
         cur.execute(sql, (*valores, ticker, anio))
         actualizados += 1

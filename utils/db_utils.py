@@ -36,13 +36,15 @@ def insertar_json_generico(tabla, ticker, json_data, db_path):
         conn.close()
 
 def ya_existe_ticker(ticker, db_path):
+    ticker = ticker.strip().upper()  # normaliza entrada
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     try:
-        cur.execute("SELECT 1 FROM tickers_consultados WHERE ticker = ?", (ticker,))
+        cur.execute("SELECT 1 FROM tickers_consultados WHERE UPPER(ticker) = ?", (ticker,))
         return cur.fetchone() is not None
     finally:
         conn.close()
+
 
 def registrar_ticker_consultado(ticker, nombre_empresa, sector, industria, market_cap, enterprise_value, db_path):
     conn = sqlite3.connect(db_path)

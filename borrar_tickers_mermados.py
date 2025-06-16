@@ -12,30 +12,30 @@ def borrar_tickers_sin_estados():
     eliminados = []
 
     for ticker in tickers:
-        cur.execute("SELECT COUNT(*) FROM ratios_plana WHERE ticker=?", (ticker,))
+        cur.execute("SELECT COUNT(*) FROM ratios_plana WHERE ticker=%s", (ticker,))
         r = cur.fetchone()[0]
-        cur.execute("SELECT COUNT(*) FROM income_statement_plana WHERE ticker=?", (ticker,))
+        cur.execute("SELECT COUNT(*) FROM income_statement_plana WHERE ticker=%s", (ticker,))
         i = cur.fetchone()[0]
-        cur.execute("SELECT COUNT(*) FROM balance_sheet_plana WHERE ticker=?", (ticker,))
+        cur.execute("SELECT COUNT(*) FROM balance_sheet_plana WHERE ticker=%s", (ticker,))
         b = cur.fetchone()[0]
-        cur.execute("SELECT COUNT(*) FROM cash_flow_plana WHERE ticker=?", (ticker,))
+        cur.execute("SELECT COUNT(*) FROM cash_flow_plana WHERE ticker=%s", (ticker,))
         c = cur.fetchone()[0]
-        cur.execute("SELECT COUNT(*) FROM enterprise_values_plana WHERE ticker=?", (ticker,))
+        cur.execute("SELECT COUNT(*) FROM enterprise_values_plana WHERE ticker=%s", (ticker,))
         ev = cur.fetchone()[0]
 
         if r == 0 and i == 0 and b == 0 and c == 0 and ev == 0:
             eliminados.append(ticker)
-            cur.execute("DELETE FROM tickers_consultados WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM income_statement WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM income_statement_plana WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM balance_sheet WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM balance_sheet_plana WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM cash_flow WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM cash_flow_plana WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM ratios WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM ratios_plana WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM enterprise_values WHERE ticker=?", (ticker,))
-            cur.execute("DELETE FROM enterprise_values_plana WHERE ticker=?", (ticker,))
+            cur.execute("DELETE FROM tickers_consultados WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM income_statement WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM income_statement_plana WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM balance_sheet WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM balance_sheet_plana WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM cash_flow WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM cash_flow_plana WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM ratios WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM ratios_plana WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM enterprise_values WHERE ticker=%s", (ticker,))
+            cur.execute("DELETE FROM enterprise_values_plana WHERE ticker=%s", (ticker,))
 
     conn.commit()
     conn.close()

@@ -43,7 +43,7 @@ def obtener_partidas(ticker, tabla, partidas_permitidas):
 
         cursor.execute(f"""
             SELECT * FROM {tabla}
-            WHERE UPPER(ticker) = UPPER(?)
+            WHERE UPPER(ticker) = UPPER(%s)
             ORDER BY anio ASC
         """, (ticker,))
 
@@ -87,7 +87,7 @@ def get_income(ticker):
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    cursor.execute("SELECT anio, raw_json FROM income_statement WHERE UPPER(ticker) = UPPER(?) ORDER BY anio ASC", (ticker,))
+    cursor.execute("SELECT anio, raw_json FROM income_statement WHERE UPPER(ticker) = UPPER(%s) ORDER BY anio ASC", (ticker,))
     filas = cursor.fetchall()
     conn.close()
 
@@ -114,7 +114,7 @@ def get_balance_sheet(ticker):
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    cursor.execute("SELECT anio, raw_json FROM balance_sheet WHERE UPPER(ticker) = UPPER(?) ORDER BY anio ASC", (ticker,))
+    cursor.execute("SELECT anio, raw_json FROM balance_sheet WHERE UPPER(ticker) = UPPER(%s) ORDER BY anio ASC", (ticker,))
     filas = cursor.fetchall()
     conn.close()
 
@@ -148,7 +148,7 @@ def get_cash_flow(ticker):
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    cursor.execute("SELECT anio, raw_json FROM cash_flow WHERE UPPER(ticker) = UPPER(?) ORDER BY anio ASC", (ticker,))
+    cursor.execute("SELECT anio, raw_json FROM cash_flow WHERE UPPER(ticker) = UPPER(%s) ORDER BY anio ASC", (ticker,))
     filas = cursor.fetchall()
     conn.close()
 
@@ -182,7 +182,7 @@ def get_ratios(ticker):
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    cursor.execute("SELECT anio, raw_json FROM ratios WHERE UPPER(ticker) = UPPER(?) ORDER BY anio ASC", (ticker,))
+    cursor.execute("SELECT anio, raw_json FROM ratios WHERE UPPER(ticker) = UPPER(%s) ORDER BY anio ASC", (ticker,))
     filas = cursor.fetchall()
     conn.close()
 
@@ -226,7 +226,7 @@ def get_enterprise(ticker):
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    cursor.execute("SELECT anio, raw_json FROM enterprise_values WHERE UPPER(ticker) = UPPER(?) ORDER BY anio ASC", (ticker,))
+    cursor.execute("SELECT anio, raw_json FROM enterprise_values WHERE UPPER(ticker) = UPPER(%s) ORDER BY anio ASC", (ticker,))
     filas = cursor.fetchall()
     conn.close()
 
@@ -278,6 +278,7 @@ def debug_tabla(nombre_tabla):
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND LOWER(name) = LOWER(?)", (nombre_tabla,))
+
         existe = cursor.fetchone()
         if not existe:
             return jsonify({"error": f"La tabla '{nombre_tabla}' no existe"}), 404
