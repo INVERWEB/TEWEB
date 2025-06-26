@@ -10,7 +10,7 @@ API_KEY = os.getenv("FMP_API_KEY")
 # === CONFIGURACIÓN ===
 LIMIT = 25000
 EXCHANGES_VALIDOS = [
-    "NYSE"
+   'NYSE','LIS', 'LSE'
 ]
 TICKERS_OUT = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/tickers_validos_analyst_key.txt")
 

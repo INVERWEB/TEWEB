@@ -2,6 +2,10 @@
 import json
 from pathlib import Path
 from time import sleep
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from utils.fetch_statements import get_all_statements
 from utils.fetch_profile import obtener_datos_perfil
 from utils.fetch_tickers import get_tickers_by_exchange_list
@@ -14,7 +18,7 @@ from utils.db_utils import (
 )
 
 # === CONFIGURACIÓN ===
-MAX_TICKERS = 500
+MAX_TICKERS = 1000
 DB_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/fmp_datafree.db")
 LOG_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/log_resultados.txt")
 TICKERS_OUT_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/tickers_validos.txt")

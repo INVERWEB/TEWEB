@@ -17,8 +17,8 @@ from utils.fetch_analyst_keymetrics.download_keymetrics import fetch_key_metrics
 from db_utils.registrar_tickers_recientes import registrar_ticker_exitoso
 
 # === CONFIGURACIÓN GENERAL ===
-EXCHANGES = ["NASDAQ"]
-LOTE_TRABAJO = 2000
+EXCHANGES = ['NYSE','LIS', 'LSE']
+LOTE_TRABAJO = 1441
 
 # === RUTAS ===
 OFFSET_PATH = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/control/descarga_offset_stocklist.json")

@@ -1,6 +1,6 @@
 import sqlite3
 import pandas as pd
-from db_postgres.connection import get_pg_connection
+from db_postgres.USERPGADMIN import get_pg_connection
 from datetime import datetime
 
 SQLITE_PATH = "E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/fmp_datafree.db"
