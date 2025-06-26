@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from db_postgres.USERPGADMIN import get_pg_connection
+from db_postgres.userAdmin import get_pg_connection
 
 
 def probar_conexion():

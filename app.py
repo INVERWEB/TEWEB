@@ -1,5 +1,8 @@
+import os
 from flask import Flask, request, jsonify
 from conexion_pg import SessionLocal
+
+
 from sqlalchemy import text
 
 app = Flask(__name__)
@@ -21,7 +24,7 @@ def get_todo_por_ticker():
 
     session = SessionLocal()
     try:
-        ticker_upper = ticker.strip().upper()  # Seguridad: limpia espacios y estandariza
+        ticker_upper = ticker.strip().upper()
 
         # Verificación en tickers_consultados
         check_query = text("""
@@ -58,5 +61,6 @@ def get_todo_por_ticker():
 
 
 if __name__ == '__main__':
-    print("🚀 Iniciando servidor Flask en modo debug...")
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Railway asigna un puerto automáticamente
+    print(f"🚀 Iniciando servidor Flask en puerto {port}...")
+    app.run(host='0.0.0.0', port=port)
