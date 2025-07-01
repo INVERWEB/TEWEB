@@ -109,6 +109,32 @@ def endpoint_estimates():
     data, status = ejecutar_consulta_por_ticker("analyst_estimates_plana", ticker)
     return jsonify(data), status
 
+@app.route('/buscar_tickers', methods=['GET'])
+def buscar_tickers():
+    letra = request.args.get('q', '').upper().strip()
+
+    if not letra:
+        return jsonify([])
+
+    session = SessionLocal()
+    try:
+        query = text("""
+            SELECT ticker FROM tickers_consultados
+            WHERE ticker ILIKE :letra
+            ORDER BY ticker
+            LIMIT 10;
+        """)
+        result = session.execute(query, {"letra": f"{letra}%"})
+        tickers = [r[0] for r in result.fetchall()]
+        return jsonify(tickers)
+
+    except Exception as e:
+        print("💥 Error en /buscar_tickers:", e)
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        session.close()
+
 # Iniciar servidor
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
