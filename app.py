@@ -134,6 +134,43 @@ def buscar_tickers():
 
     finally:
         session.close()
+@app.route('/tickers_consultados', methods=['GET'])
+def obtener_info_ticker():
+    ticker = request.args.get('ticker')
+    if not ticker:
+        return jsonify({"error": "Se requiere el parámetro 'ticker'"}), 400
+
+    session = SessionLocal()
+    try:
+        query = text("""
+            SELECT
+                market_cap,
+                enterprise_value,
+                sector,
+                ticker,
+                fecha_consulta,
+                industria,
+                nombre_empresa
+            FROM tickers_consultados
+            WHERE ticker = :ticker
+            LIMIT 1;
+        """)
+        result = session.execute(query, {"ticker": ticker.upper()})
+        fila = result.fetchone()
+
+        if not fila:
+            return jsonify([]), 200
+
+        columnas = result.keys()
+        return jsonify([dict(zip(columnas, fila))])
+
+    except Exception as e:
+        print("💥 Error en /tickers_consultados:", e)
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        session.close()
+
 
 # Iniciar servidor
 if __name__ == '__main__':
