@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, jsonify
 from conexion_pg import SessionLocal
 from sqlalchemy import text
-
+import threading
 app = Flask(__name__)
 
 @app.route('/')
@@ -166,6 +166,60 @@ def obtener_info_ticker():
 
     except Exception as e:
         print("💥 Error en /tickers_consultados:", e)
+        return jsonify({"error": str(e)}), 500
+    
+# Diccionario de caché en memoria y bloqueo para concurrencia
+cache_industrias = {}
+lock_cache = threading.Lock()
+
+@app.route('/industria_google', methods=['GET'])
+def obtener_industria_google():
+    industria_fmp = request.args.get('industria_fmp')
+
+    if not industria_fmp:
+        return jsonify({"error": "Se requiere el parámetro 'industria_fmp'"}), 400
+
+    industria_fmp = industria_fmp.strip()
+
+    with lock_cache:
+        if industria_fmp in cache_industrias:
+            return jsonify({
+                "industria_fmp": industria_fmp,
+                "industria_google": cache_industrias[industria_fmp],
+                "cache": True
+            })
+
+    session = SessionLocal()
+    try:
+        query = text("""
+            SELECT industria_google 
+            FROM mapa_industrias 
+            WHERE LOWER(industria_fmp) = LOWER(:industria_fmp)
+            LIMIT 1;
+        """)
+        result = session.execute(query, {"industria_fmp": industria_fmp})
+        fila = result.fetchone()
+
+        if not fila:
+            return jsonify({
+                "industria_fmp": industria_fmp,
+                "industria_google": "Pendiente",
+                "error": "Industria no encontrada en base"
+            }), 404
+
+        industria_google = fila[0]
+
+        with lock_cache:
+            cache_industrias[industria_fmp] = industria_google
+
+        return jsonify({
+            "industria_fmp": industria_fmp,
+            "industria_google": industria_google,
+            "cache": False
+        })
+
+    except Exception as e:
+        print("💥 Error en /industria_google:", e)
         return jsonify({"error": str(e)}), 500
 
     finally:
