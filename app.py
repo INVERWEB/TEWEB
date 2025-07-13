@@ -221,6 +221,33 @@ def obtener_industria_google():
     except Exception as e:
         print("💥 Error en /industria_google:", e)
         return jsonify({"error": str(e)}), 500
+@app.route('/mapa_industrias', methods=['GET'])
+def obtener_mapa_industrias():
+    ticker = request.args.get('ticker')
+    if not ticker:
+        return jsonify({"error": "Se requiere el parámetro 'ticker'"}), 400
+
+    session = SessionLocal()
+    try:
+        query = text("""
+            SELECT * FROM mapa_industrias
+            WHERE ticker = :ticker
+            LIMIT 1;
+        """)
+        result = session.execute(query, {"ticker": ticker.upper()})
+        fila = result.fetchone()
+
+        if not fila:
+            return jsonify([]), 200
+
+        columnas = result.keys()
+        return jsonify([dict(zip(columnas, fila))])
+
+    except Exception as e:
+        print("💥 Error en /mapa_industrias:", e)
+        return jsonify({"error": str(e)}), 500
+
+    
 
     finally:
         session.close()
