@@ -249,7 +249,30 @@ def obtener_por_industria_google():
         print("💥 Error en /mapa_por_industria:", e)
         return jsonify({"error": str(e)}), 500
 
-    
+@app.route('/tickers_por_industria', methods=['GET'])
+def tickers_por_industria():
+    industria = request.args.get('industria')
+    if not industria:
+        return jsonify({"error": "Se requiere el parámetro 'industria'"}), 400
+
+    session = SessionLocal()
+    try:
+        query = text("""
+            SELECT ticker, nombre_empresa
+            FROM tickers_consultados
+            WHERE LOWER(industria) = LOWER(:industria)
+            ORDER BY market_cap DESC NULLS LAST
+            LIMIT 10;
+        """)
+        result = session.execute(query, {"industria": industria})
+        columnas = result.keys()
+        datos = [dict(zip(columnas, fila)) for fila in result.fetchall()]
+        return jsonify(datos)
+
+    except Exception as e:
+        print("💥 Error en /tickers_por_industria:", e)
+        return jsonify({"error": str(e)}), 500
+
 
     finally:
         session.close()
