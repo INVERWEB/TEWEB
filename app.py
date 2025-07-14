@@ -221,10 +221,11 @@ def obtener_industria_google():
     except Exception as e:
         print("💥 Error en /industria_google:", e)
         return jsonify({"error": str(e)}), 500
+    
 @app.route('/mapa_por_industria', methods=['GET'])
 def obtener_por_industria_google():
-    industria = request.args.get('industria_google')
-    if not industria:
+    industria_google = request.args.get('industria_google')
+    if not industria_google:
         return jsonify({"error": "Se requiere el parámetro 'industria_google'"}), 400
 
     session = SessionLocal()
@@ -232,16 +233,17 @@ def obtener_por_industria_google():
         query = text("""
             SELECT * FROM mapa_industrias
             WHERE LOWER(industria_google) = LOWER(:industria)
-            ORDER BY ticker;
+            ORDER BY industria_fmp;
         """)
-        result = session.execute(query, {"industria": industria.strip()})
+        result = session.execute(query, {"industria": industria_google})
         filas = result.fetchall()
 
         if not filas:
             return jsonify([]), 200
 
         columnas = result.keys()
-        return jsonify([dict(zip(columnas, fila)) for fila in filas])
+        data = [dict(zip(columnas, fila)) for fila in filas]
+        return jsonify(data)
 
     except Exception as e:
         print("💥 Error en /mapa_por_industria:", e)
