@@ -12,7 +12,7 @@ logging.basicConfig(
 # -----------------------
 # CONFIGURACIÓN MANUAL DE ENTORNO
 # -----------------------
-modo = "production"  # ← Cambia a "local" si quieres trabajar en tu entorno local
+modo = "production"  # Cambiar a "local" si aplica
 
 try:
     if modo == "production":
@@ -38,11 +38,9 @@ try:
 
     # -----------------------
     # MAPEO INDUSTRIAS FMP → GOOGLE FINANCE
-    # -----------------------
-
-
+    
     mapeo_industrias = {
-    "Advertising Agencies": "Advertising",
+        "Advertising Agencies": "Advertising",
     "Aerospace & Defense": "Aerospace & Defense",
     "Agricultural - Commodities/Milling": "Agricultural Products",
     "Agricultural Farm Products": "Agricultural Products",
@@ -182,8 +180,7 @@ try:
     "Restaurants": "Restaurants",
     "Security & Protection Services": "Security Services",
     "Semiconductors": "Semiconductors",
-    "Shell Companies": "OTC Market",
-    "Silver": "Silver",
+     "Silver": "Silver",
     "Software - Application": "Application Software",
     "Software - Infrastructure": "Systems Software",
     "Software - Services": "Application Software",
@@ -199,42 +196,47 @@ try:
     "Travel Services": "Travel & Tourism",
     "Trucking": "Truck Transportation",
     "Uranium": "Metals & Mining",
-    "Waste Management": "Environmental & Facilities Services"
-}
+    "Waste Management": "Environmental & Facilities Services" 
+    }
 
+    limite = 158  # ajustable
 
-    limite = 100  # puedes ajustar
+    # -----------------------
+    # CONSULTA FILAS VACÍAS
+    # -----------------------
+    cursor.execute("""
+        SELECT industria_fmp
+        FROM mapa_industrias
+        WHERE industria_google IS NULL
+        LIMIT %s
+    """, (limite,))
 
-    try:
-        cursor.execute("""
-            SELECT industria_fmp
-            FROM mapa_industrias
-            WHERE industria_google = 'Pendiente'
-            LIMIT %s
-        """, (limite,))
+    resultados = cursor.fetchall()
 
-        resultados = cursor.fetchall()
+    if not resultados:
+        logging.info("✅ No hay industrias pendientes por normalizar.")
+    else:
+        for fila in resultados:
+            industria_fmp = fila[0]
+            if not industria_fmp:
+                continue  # salta filas completamente vacías
 
-        if not resultados:
-            logging.info("✅ No hay industrias pendientes por normalizar.")
-        else:
-            for fila in resultados:
-                industria_fmp = fila[0]
-                industria_google = mapeo_industrias.get(industria_fmp)
+            industria_google = mapeo_industrias.get(industria_fmp)
 
-                if industria_google:
-                    cursor.execute("""
-                        UPDATE mapa_industrias
-                        SET industria_google = %s
-                        WHERE industria_fmp = %s
-                    """, (industria_google, industria_fmp))
-                    conn.commit()
-                    logging.info(f"🟢 {industria_fmp} → {industria_google}")
-                else:
-                    logging.warning(f"⚠️ No hay mapeo para: {industria_fmp}")
+            if industria_google:
+                cursor.execute("""
+                    UPDATE mapa_industrias
+                    SET industria_google = %s
+                    WHERE industria_fmp = %s
+                """, (industria_google, industria_fmp))
+                conn.commit()
+                logging.info(f"🟢 {industria_fmp} → {industria_google}")
+            else:
+                logging.warning(f"⚠️ No hay mapeo para: {industria_fmp}")
 
-    except psycopg2.Error as e:
-        logging.error(f"❌ Error en la consulta SQL: {e}")
+except Exception as e:
+    logging.error(f"❌ Error general: {e}")
+    if conn:
         conn.rollback()
 
 finally:

@@ -8,9 +8,9 @@ load_dotenv()
 API_KEY = os.getenv("FMP_API_KEY")
 
 # === CONFIGURACIÓN ===
-LIMIT = 25000
+LIMIT = 10000
 EXCHANGES_VALIDOS = [
-   'NYSE','LIS', 'LSE'
+   'TO'
 ]
 TICKERS_OUT = Path("E:/@VALUECONOMICS/PROYECT DEL PROGRAMA/TEWEB/tickers_validos_analyst_key.txt")
 

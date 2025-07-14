@@ -7,7 +7,7 @@ API_KEY = os.getenv("FMP_API_KEY")
 
 # === CONFIGURACIÓN ===
 LIMIT = 20000  # o más si querés más tickers
-EXCHANGES_VALIDOS = [ 'NYSE', 'NASDAQ']
+EXCHANGES_VALIDOS = [ 'TO']
 
 def get_tickers_by_exchange_list(limit=LIMIT, exchanges=EXCHANGES_VALIDOS):
     tickers = []
