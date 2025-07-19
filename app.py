@@ -209,14 +209,7 @@ def obtener_industria_google():
 
         industria_google = fila[0]
 
-        with lock_cache:
-            cache_industrias[industria_fmp] = industria_google
-
-        return jsonify({
-            "industria_fmp": industria_fmp,
-            "industria_google": industria_google,
-            "cache": False
-        })
+        
 
     except Exception as e:
         print("💥 Error en /industria_google:", e)
@@ -262,7 +255,7 @@ def tickers_por_industria():
             FROM tickers_consultados
             WHERE LOWER(industria) = LOWER(:industria)
             ORDER BY market_cap DESC NULLS LAST
-            LIMIT 10;
+            LIMIT 200;
         """)
         result = session.execute(query, {"industria": industria})
         columnas = result.keys()
