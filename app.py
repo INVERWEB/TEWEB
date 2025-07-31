@@ -265,7 +265,44 @@ def tickers_por_industria():
     except Exception as e:
         print("💥 Error en /tickers_por_industria:", e)
         return jsonify({"error": str(e)}), 500
+    
+# *********** NUEVO ENDPOINT ***********
+@app.route('/mapa_por_industria_fmp', methods=['GET'])
+def obtener_por_industria_fmp():
+    industria_fmp = request.args.get('industria_fmp')
+    if not industria_fmp:
+        return jsonify({"error": "Se requiere el parámetro 'industria_fmp'"}), 400
 
+    session = SessionLocal()
+    try:
+        query = text("""
+            SELECT
+                industria_google,
+                etf_seguimiento,
+                pe_promedio,
+                "netdebt/ebitda_promedio",
+                growth_sales_industria,
+                etf_name,
+                notion,
+                industria_fmp
+            FROM mapa_industrias
+            WHERE LOWER(industria_fmp) = LOWER(:industria)
+            LIMIT 1;
+        """)
+        result = session.execute(query, {"industria": industria_fmp})
+        fila = result.fetchone()
+
+        if not fila:
+            # Si no se encuentra la industria, se devuelve un JSON vacío o un mensaje de no encontrado
+            return jsonify({"message": f"No se encontró información para la industria_fmp: {industria_fmp}"}), 404
+
+        columnas = result.keys()
+        data = dict(zip(columnas, fila)) # Se devuelve un diccionario con la fila encontrada
+        return jsonify(data)
+
+    except Exception as e:
+        print(f"💥 Error en /mapa_por_industria_fmp para '{industria_fmp}': {e}")
+        return jsonify({"error": str(e)}), 500
 
     finally:
         session.close()
